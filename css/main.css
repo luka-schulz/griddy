@@ -1,0 +1,22 @@
+/** Reset **/
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+/** Base Styling **/
+
+html {
+  background-color: #121212;
+  color: #FFFFFF;
+  font: 12px "Source Sans Pro", sans-serif;;
+  hyphens: none;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+}
