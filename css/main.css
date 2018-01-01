@@ -2,6 +2,7 @@
 
 * {
   box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   margin: 0;
   padding: 0;
   position: relative;
@@ -12,11 +13,28 @@
 html {
   background-color: #121212;
   color: #FFFFFF;
-  font: 12px "Source Sans Pro", sans-serif;;
+  font: 12px "Space Mono", sans-serif;
+  letter-spacing: .2px;
   hyphens: none;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
+  overflow: hidden;
 }
 
 canvas {
   display: block;
   width: 100%;
+}
+
+#page__instructions {
+  position: absolute;
+  display: block;
+  left: calc(50% - 15rem);
+  top: 45%;
+  width: 30rem;
+  text-align: center;
+}
+
+p {
+  font-size: 1.5rem;
 }
