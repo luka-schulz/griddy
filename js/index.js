@@ -3,8 +3,9 @@
 window.onload = function() {
   let canvas;
   let ctx;
+  let musicPlayer;
   
-  function setup() {
+  function init() {
     // determine the displays pixel ratio
     // HiDPI displays return values greater than 1
     const scaleFactor = window.devicePixelRatio;
@@ -20,6 +21,8 @@ window.onload = function() {
     // scale context by the device pixel ratio
     ctx.scale(scaleFactor, scaleFactor);
     
+    document.onkeypress = checkKeystroke;
+    
     clearBackground();
     Particle.ctx = ctx;
   }
@@ -29,6 +32,6 @@ window.onload = function() {
     requestAnimationFrame(draw);
   }
   
-  setup();
+  init();
   draw();
 }
