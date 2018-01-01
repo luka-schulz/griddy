@@ -3,7 +3,7 @@
 window.onload = function() {
   let canvas;
   let ctx;
-  let musicPlayer;
+  let state = false;
   
   function init() {
     // determine the displays pixel ratio
@@ -25,13 +25,18 @@ window.onload = function() {
     
     clearBackground();
     Particle.ctx = ctx;
+    
+    document.querySelector( "audio" ).src = "./audio/all-night.mp3";
   }
   
-  function draw() {
-    clearBackground();
-    requestAnimationFrame(draw);
+  function setupAnalyser() {
+    
   }
   
+  function clearBackground() {
+    ctx.fillStyle = colors.BLACK;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
+
   init();
-  draw();
 }
