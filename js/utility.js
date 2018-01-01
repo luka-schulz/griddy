@@ -19,11 +19,6 @@ function random(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function clearBackground() {
-  ctx.fillStyle = colors.BLACK;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-}
-
 function checkKeystroke(event) {
   event = event || window.event; // IE
   
@@ -40,6 +35,38 @@ function checkKeystroke(event) {
 };
 
 function toggleVisualizer() {
+  let element = document.getElementById("page__instructions");
+  let audio = document.querySelector("audio");
+
+  if (element.classList) { 
+    state = element.classList.toggle("fade");
+    
+    if (state) {
+      audio.play();
+    }
+    else {
+      audio.pause();
+    }
+  }
+  
+  else {
+    // For IE9
+    var classes = element.className.split(" ");
+    var i = classes.indexOf("fade");
+
+    if (i >= 0) {
+      classes.splice(i, 1);
+      state = false;
+      audio.pause();
+    } 
+    else {
+      classes.push("fade");
+      element.className = classes.join(" "); 
+      state = false;
+      audio.play();
+    } 
+  }
+
   console.log( "Space" )
 }
 
