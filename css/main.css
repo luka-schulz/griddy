@@ -24,17 +24,33 @@ html {
 canvas {
   display: block;
   width: 100%;
+  z-index: -1;
 }
 
 #page__instructions {
   position: absolute;
   display: block;
   left: calc(50% - 15rem);
-  top: 45%;
+  top: 40vh;
   width: 30rem;
   text-align: center;
+  transition: all .2s ease-out;
+  -webkit-transition: all .2s ease-out;
+}
+
+.fade {
+  opacity: 0;
 }
 
 p {
   font-size: 1.5rem;
+}
+
+.hide {
+  clip: rect(0 0 0 0);
+  height: 1px; width: 1px;
+  margin: -1px; padding: 0; border: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 }
