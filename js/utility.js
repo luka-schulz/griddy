@@ -18,3 +18,8 @@ function random(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+function clearBackground() {
+  ctx.fillStyle = colors.BLACK;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
