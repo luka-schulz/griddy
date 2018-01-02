@@ -51,8 +51,8 @@ function toggleVisualizer() {
   
   else {
     // For IE9
-    var classes = element.className.split(" ");
-    var i = classes.indexOf("fade");
+    let classes = element.className.split(" ");
+    let i = classes.indexOf("fade");
 
     if (i >= 0) {
       classes.splice(i, 1);
