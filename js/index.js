@@ -1,42 +1,29 @@
 "use strict"
+let analyser;
+let mouse;
 
 window.onload = function() {
-  let canvas;
-  let ctx;
-  let state = false;
-  
-  function init() {
-    // determine the displays pixel ratio
-    // HiDPI displays return values greater than 1
-    const scaleFactor = window.devicePixelRatio;
-
-    canvas = document.getElementById("canvas");
-
-    // set the width and height of the canvas
-    canvas.width = window.innerWidth * scaleFactor;
-    canvas.height = window.innerHeight * scaleFactor;
-
-    ctx = canvas.getContext("2d");
-
-    // scale context by the device pixel ratio
-    ctx.scale(scaleFactor, scaleFactor);
-    
-    document.onkeypress = checkKeystroke;
-    
-    clearBackground();
-    Particle.ctx = ctx;
-    
-    document.querySelector( "audio" ).src = "./audio/all-night.mp3";
-  }
-  
   function setupAnalyser() {
+    let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     
+    let audioPlayer = document.querySelector("audio");
+    audioPlayer.src = "./audio/all-night.mp3";
+    
+    let musicSource = audioCtx.createMediaElementSource(audioPlayer);
+    
+    let gainNode = audioCtx.createGain(); // the gain node adjusts volume
+    musicSource.connect(gainNode); // connect gain node to the music source
+    
+    analyser = audioCtx.createAnalyser(); // create the audio analyser
+    analyser.fftSize = 1024; // 1024 -> 512 bins
+    
+    gainNode.connect(analyser); // analyser -> gain node -> music source -> audio player
+    gainNode.connect(audioCtx.destination);
+    
+    app.animate();
   }
   
-  function clearBackground() {
-    ctx.fillStyle = colors.BLACK;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-  }
-
-  init();
+  app.init();
+  
+  setupAnalyser();
 }
